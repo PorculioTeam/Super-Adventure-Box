@@ -35,7 +35,7 @@
     self.levelClear = NO;
     
     // Configuramos el nivel y el escenario aquí.
-    // Color de fondo (el cielo
+    // Color de fondo (el cielo)
     self.backgroundColor = [SKColor colorWithRed:.4 green:.4 blue:.95 alpha:1.0];
     
     // Asigna el nivel y lo añade dentro del escenario como hijo
