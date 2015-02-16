@@ -293,6 +293,7 @@
 - (void)gameOver:(BOOL)won {
   self.gameOver = YES;
   // Reproduce el sonido
+  [[SKTAudio sharedInstance] pauseBackgroundMusic];
   [self runAction:[SKAction playSoundFileNamed:@"hurt.wav" waitForCompletion:NO]];
   
   // Se asigna el texto dependiendo del booleano Won.
