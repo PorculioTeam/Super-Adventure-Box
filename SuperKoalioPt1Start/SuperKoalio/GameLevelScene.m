@@ -51,7 +51,7 @@
     // y luego lo asigna dentro del mapa como hijo
     if(self.player.livesLeft == 0)
     {
-      self.player = [[Player alloc] initWithImageNamed:@"koalio_stand"];
+      self.player = [[Player alloc] initWithImageNamed:@"player"];
       self.player.livesLeft = 3;
       self.player.position = CGPointMake(100, 50);
       self.player.zPosition = 15;
@@ -215,6 +215,7 @@
       self.player.mightAsWellJump = YES;
     } else {
       self.player.forwardMarch = YES;
+      [self.player walkingPlayer];
     }
   }
 }
@@ -244,6 +245,7 @@
     CGPoint touchLocation = [touch locationInNode:self];
     if (touchLocation.x < self.size.width / 2.0) {
       self.player.forwardMarch = NO;
+      [self.player walkStop];
     } else {
       self.player.mightAsWellJump = NO;
     }

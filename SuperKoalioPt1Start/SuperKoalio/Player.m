@@ -10,6 +10,7 @@
 #import "SKTUtils.h"
 
 @implementation Player
+NSMutableArray *_walkAnimation;
 - (instancetype)initWithImageNamed:(NSString *)name {
     if (self == [super initWithImageNamed:name]) {
         self.velocity = CGPointMake(0.0, 0.0);
@@ -20,6 +21,12 @@
 - (void)update:(NSTimeInterval)delta {
     CGPoint gravity = CGPointMake(0.0, -450.0);
     CGPoint gravityStep = CGPointMultiplyScalar(gravity, delta);
+    SKTextureAtlas *playerAnimationAtlas = [SKTextureAtlas atlasNamed:@"player"];
+    _walkAnimation = [[NSMutableArray alloc] init];
+    [_walkAnimation addObject:[playerAnimationAtlas textureNamed:@"player-walk1"]];
+    [_walkAnimation addObject:[playerAnimationAtlas textureNamed:@"player-walk2"]];
+    [_walkAnimation addObject:[playerAnimationAtlas textureNamed:@"player-walk3"]];
+    [_walkAnimation addObject:[playerAnimationAtlas textureNamed:@"player-walk4"]];
     
     CGPoint forwardMove = CGPointMake(800.0, 0.0);
     CGPoint forwardMoveStep = CGPointMultiplyScalar(forwardMove, delta);
@@ -54,6 +61,17 @@
     CGRect boundingBox = CGRectInset(self.frame, 2, 0);
     CGPoint diff = CGPointSubtract(self.desiredPosition, self.position);
     return CGRectOffset(boundingBox, diff.x, diff.y);
+}
+
+- (void)walkingPlayer {
+    //This is our general runAction method to make our bear walk.
+    [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:_walkAnimation timePerFrame:0.1f resize:NO restore:YES]] withKey:@"walkingPlayerAction"];
+    return;
+}
+
+- (void)walkStop {
+    [self removeActionForKey:@"walkingPlayerAction"];
+    //[self removeActionForKey:@"playerWalkMovement"];
 }
 
 @end

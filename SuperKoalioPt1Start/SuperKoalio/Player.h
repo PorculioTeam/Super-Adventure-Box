@@ -23,5 +23,9 @@
 @property (nonatomic, assign) int livesLeft;
 - (void)update:(NSTimeInterval)delta;
 - (CGRect)collisionBoundingBox;
+//Evento que inicia la animación de caminar en el personaje.
+-(void)walkingPlayer;
+//Evento que finaliza la animación de caminar en el personaje.
+-(void)walkStop;
 
 @end

@@ -25,7 +25,6 @@
 		F275B6A3186E0B06009F6E6B /* SuperKoalioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F275B6A2186E0B06009F6E6B /* SuperKoalioTests.m */; };
 		F275B6AE186E0B8D009F6E6B /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = F275B6AD186E0B8D009F6E6B /* Player.m */; };
 		F275B6B7186E21AB009F6E6B /* sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F275B6B6186E21AB009F6E6B /* sprites.atlas */; };
-		F275B6BC186E21CB009F6E6B /* hurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = F275B6B8186E21CB009F6E6B /* hurt.wav */; };
 		F275B6BD186E21CB009F6E6B /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = F275B6B9186E21CB009F6E6B /* jump.wav */; };
 		F275B6BE186E21CB009F6E6B /* level1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F275B6BA186E21CB009F6E6B /* level1.mp3 */; };
 		F275B6BF186E21CB009F6E6B /* level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = F275B6BB186E21CB009F6E6B /* level1.tmx */; };
@@ -42,6 +41,8 @@
 		F275B6E5186E25C1009F6E6B /* SKTTimingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = F275B6DC186E25C1009F6E6B /* SKTTimingFunctions.m */; };
 		F275B6F0186E2749009F6E6B /* tileSet.png in Resources */ = {isa = PBXBuildFile; fileRef = F275B6EE186E2749009F6E6B /* tileSet.png */; };
 		F275B6F1186E2749009F6E6B /* tileSet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F275B6EF186E2749009F6E6B /* tileSet@2x.png */; };
+		FB31583D1A91ED3A0042A78D /* hurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = FB31583C1A91ED3A0042A78D /* hurt.wav */; };
+		FB31583F1A91EDEB0042A78D /* player.atlas in Resources */ = {isa = PBXBuildFile; fileRef = FB31583E1A91EDEB0042A78D /* player.atlas */; };
 		FBBDD7671A76536400E36B5E /* replay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBBDD7661A76536400E36B5E /* replay@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -81,7 +82,6 @@
 		F275B6AC186E0B8D009F6E6B /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		F275B6AD186E0B8D009F6E6B /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		F275B6B6186E21AB009F6E6B /* sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = sprites.atlas; sourceTree = "<group>"; };
-		F275B6B8186E21CB009F6E6B /* hurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hurt.wav; sourceTree = "<group>"; };
 		F275B6B9186E21CB009F6E6B /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
 		F275B6BA186E21CB009F6E6B /* level1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = level1.mp3; sourceTree = "<group>"; };
 		F275B6BB186E21CB009F6E6B /* level1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = level1.tmx; sourceTree = "<group>"; };
@@ -109,6 +109,8 @@
 		F275B6DD186E25C1009F6E6B /* SKTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTUtils.h; sourceTree = "<group>"; };
 		F275B6EE186E2749009F6E6B /* tileSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileSet.png; sourceTree = "<group>"; };
 		F275B6EF186E2749009F6E6B /* tileSet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tileSet@2x.png"; sourceTree = "<group>"; };
+		FB31583C1A91ED3A0042A78D /* hurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hurt.wav; sourceTree = "<group>"; };
+		FB31583E1A91EDEB0042A78D /* player.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = player.atlas; sourceTree = "<group>"; };
 		FBBDD7661A76536400E36B5E /* replay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "replay@2x.png"; path = "sprites.atlas/replay@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -223,8 +225,8 @@
 		F275B6C0186E21D1009F6E6B /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				F275B6B8186E21CB009F6E6B /* hurt.wav */,
 				F275B6B9186E21CB009F6E6B /* jump.wav */,
+				FB31583C1A91ED3A0042A78D /* hurt.wav */,
 				F275B6BA186E21CB009F6E6B /* level1.mp3 */,
 			);
 			name = Audio;
@@ -243,6 +245,7 @@
 		F275B6C2186E21EB009F6E6B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FB31583E1A91EDEB0042A78D /* player.atlas */,
 				FBBDD7661A76536400E36B5E /* replay@2x.png */,
 				F275B6C0186E21D1009F6E6B /* Audio */,
 				F275B6C1186E21D9009F6E6B /* TMX Files */,
@@ -362,6 +365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB31583F1A91EDEB0042A78D /* player.atlas in Resources */,
 				F275B6BF186E21CB009F6E6B /* level1.tmx in Resources */,
 				F275B6B7186E21AB009F6E6B /* sprites.atlas in Resources */,
 				F275B6BE186E21CB009F6E6B /* level1.mp3 in Resources */,
@@ -370,8 +374,8 @@
 				F275B67D186E0B06009F6E6B /* InfoPlist.strings in Resources */,
 				F275B690186E0B06009F6E6B /* Images.xcassets in Resources */,
 				F275B6BD186E21CB009F6E6B /* jump.wav in Resources */,
-				F275B6BC186E21CB009F6E6B /* hurt.wav in Resources */,
 				F275B6F0186E2749009F6E6B /* tileSet.png in Resources */,
+				FB31583D1A91ED3A0042A78D /* hurt.wav in Resources */,
 				F275B686186E0B06009F6E6B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
