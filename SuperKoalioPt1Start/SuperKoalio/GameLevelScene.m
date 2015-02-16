@@ -47,19 +47,12 @@
     // Asigna los peligros dentro del mapa
     self.hazards = [self.map layerNamed:@"hazards"];
     
-    // Asigna el jugador con la imagen de píe (sin hacer nada), lo posiciona
-    // y luego lo asigna dentro del mapa como hijo
-    if(self.player.livesLeft == 0)
-    {
-      self.player = [[Player alloc] initWithImageNamed:@"koalio_stand"];
-      self.player.livesLeft = 3;
-      self.player.position = CGPointMake(100, 50);
-      self.player.zPosition = 15;
-      [self.map addChild:self.player];
-    } else {
-      self.player.position = CGPointMake(100, 50);
-      self.player.zPosition = 15;
-    }
+    SKSpriteNode *fireNode = [SKSpriteNode spriteNodeWithImageNamed:@"play.png"];
+    fireNode.position = CGPointMake(self.size.width / 2.0, self.size.height / 1.7);
+    fireNode.name = @"fireButtonNode";//Identificador
+    fireNode.zPosition = 1.0;
+    [self addChild:fireNode];
+    
     
     // Pone el indicador de vidas en pantalla
     self.hudLives = [SKLabelNode labelNodeWithFontNamed:@"Marker Felt"];
@@ -209,6 +202,25 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    UITouch *touch = [touches anyObject];
+    CGPoint touchLocation = [touch locationInNode:self];
+    SKNode *node = [self nodeAtPoint:touchLocation];
+    if ([node.name isEqualToString:@"fireButtonNode"]) {
+      // Asigna el jugador con la imagen de píe (sin hacer nada), lo posiciona
+      // y luego lo asigna dentro del mapa como hijo
+      if(self.player.livesLeft == 0)
+      {
+        self.player = [[Player alloc] initWithImageNamed:@"koalio_stand"];
+        self.player.livesLeft = 3;
+        self.player.position = CGPointMake(100, 50);
+        self.player.zPosition = 15;
+        [self.map addChild:self.player];
+      } else {
+        self.player.position = CGPointMake(100, 50);
+        self.player.zPosition = 15;
+      }
+
+    }
   for (UITouch *touch in touches) {
     CGPoint touchLocation = [touch locationInNode:self];
     if (touchLocation.x > self.size.width / 2.0) {
@@ -218,7 +230,6 @@
     }
   }
 }
-
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
   for (UITouch *touch in touches) {
     
@@ -303,7 +314,15 @@
     self.player.livesLeft = self.player.livesLeft - 1;
       if (self.player.livesLeft > 0) {
         self.gameText = [NSString stringWithFormat:@"¡Has muerto!, Vidas: %d", self.player.livesLeft];
-      } else {
+      } else if((self.player.livesLeft = 0)){
+        // Si la vida es igual a 0 sale el boton de replay y el texto Game Over
+        UIButton *replay = [UIButton buttonWithType:UIButtonTypeCustom];
+        replay.tag = 321;
+        UIImage *replayImage = [UIImage imageNamed:@"replay"];
+        [replay setImage:replayImage forState:UIControlStateNormal];
+        [replay addTarget:self action:@selector(replay:) forControlEvents:UIControlEventTouchUpInside];
+        replay.frame = CGRectMake(self.size.width / 2.0 - replayImage.size.width / 2.0, self.size.height / 2.0 - replayImage.size.height / 2.0, replayImage.size.width, replayImage.size.height);
+        [self.view addSubview:replay];
         self.gameText = @"Game Over";
       }
   }
@@ -314,13 +333,6 @@
   endGameLabel.position = CGPointMake(self.size.width / 2.0, self.size.height / 1.7);
   [self addChild:endGameLabel];
   
-  UIButton *replay = [UIButton buttonWithType:UIButtonTypeCustom];
-  replay.tag = 321;
-  UIImage *replayImage = [UIImage imageNamed:@"replay"];
-  [replay setImage:replayImage forState:UIControlStateNormal];
-  [replay addTarget:self action:@selector(replay:) forControlEvents:UIControlEventTouchUpInside];
-  replay.frame = CGRectMake(self.size.width / 2.0 - replayImage.size.width / 2.0, self.size.height / 2.0 - replayImage.size.height / 2.0, replayImage.size.width, replayImage.size.height);
-  [self.view addSubview:replay];
 }
 
 - (void)replay:(id)sender
