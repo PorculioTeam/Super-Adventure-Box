@@ -305,7 +305,7 @@
     // game over.
     self.player.livesLeft = self.player.livesLeft - 1;
       if (self.player.livesLeft > 0) {
-        self.gameText = [NSString stringWithFormat:@"¡Has muerto!, Vidas: %d", self.player.livesLeft];
+        self.gameText = [NSString stringWithFormat:@"¡Has muerto!, Vidas restantes: %d", self.player.livesLeft];
       } else {
         self.gameText = @"Game Over";
       }
