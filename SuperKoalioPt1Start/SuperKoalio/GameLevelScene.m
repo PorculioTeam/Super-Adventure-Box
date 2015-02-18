@@ -91,10 +91,9 @@
     [self addChild:hudScore];
     
     //Pone el icono de sonido
-    //self.sonido = [SKLabelNode nodeWithFileNamed:@"mute"];
-    //sonido.position = CGPointMake(self.size.width * 0.0, 0.0);
-    //sonido.horizontalAlignmentMode = 1;
-    //[self addChild:sonido];
+    self.sonido = [SKSpriteNode spriteNodeWithImageNamed:@"mute.png"];
+    sonido.position = CGPointMake(self.size.width * 0.97,self.size.height * 0.93);
+    [self addChild:sonido];
     
     // Una vez añadido todo, empieza la partida
     self.startGamePlay = YES;
