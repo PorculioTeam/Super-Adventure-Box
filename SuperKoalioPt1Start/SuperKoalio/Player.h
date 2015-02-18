@@ -21,6 +21,8 @@
 @property (nonatomic, assign) BOOL mightAsWellJump;
 // El número de vidas restantes para el jugador
 @property (nonatomic, assign) int livesLeft;
+//Puntuacion
+@property (nonatomic, assign) int score;
 - (void)update:(NSTimeInterval)delta;
 - (CGRect)collisionBoundingBox;
 //Evento que inicia la animación de caminar en el personaje.

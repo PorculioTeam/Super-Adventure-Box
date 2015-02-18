@@ -55,6 +55,8 @@
 		FBCA06751A94832200722D8B /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = FBCA066A1A94832200722D8B /* Icon-Small.png */; };
 		FBCA06761A94832200722D8B /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBCA066B1A94832200722D8B /* Icon-Small@2x.png */; };
 		FBCA06771A94832200722D8B /* Icon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBCA066C1A94832200722D8B /* Icon-Small@3x.png */; };
+		FBCA067A1A94863600722D8B /* kmixdocked_mute.png in Resources */ = {isa = PBXBuildFile; fileRef = FBCA06781A94863600722D8B /* kmixdocked_mute.png */; };
+		FBCA067B1A94863600722D8B /* mute.png in Resources */ = {isa = PBXBuildFile; fileRef = FBCA06791A94863600722D8B /* mute.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +136,8 @@
 		FBCA066A1A94832200722D8B /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		FBCA066B1A94832200722D8B /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		FBCA066C1A94832200722D8B /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@3x.png"; sourceTree = "<group>"; };
+		FBCA06781A94863600722D8B /* kmixdocked_mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kmixdocked_mute.png; sourceTree = "<group>"; };
+		FBCA06791A94863600722D8B /* mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mute.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +272,8 @@
 		F275B6C2186E21EB009F6E6B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FBCA06781A94863600722D8B /* kmixdocked_mute.png */,
+				FBCA06791A94863600722D8B /* mute.png */,
 				FB31583E1A91EDEB0042A78D /* player.atlas */,
 				FBBDD7661A76536400E36B5E /* replay@2x.png */,
 				F275B6C0186E21D1009F6E6B /* Audio */,
@@ -417,6 +423,7 @@
 				FBCA06751A94832200722D8B /* Icon-Small.png in Resources */,
 				FBBDD7671A76536400E36B5E /* replay@2x.png in Resources */,
 				FBCA066D1A94832200722D8B /* Contents.json in Resources */,
+				FBCA067A1A94863600722D8B /* kmixdocked_mute.png in Resources */,
 				FBCA06711A94832200722D8B /* Icon-60@2x.png in Resources */,
 				F275B67D186E0B06009F6E6B /* InfoPlist.strings in Resources */,
 				FBCA066F1A94832200722D8B /* Icon-40@2x.png in Resources */,
@@ -426,6 +433,7 @@
 				FBCA06731A94832200722D8B /* Icon-76.png in Resources */,
 				FB31583D1A91ED3A0042A78D /* hurt.wav in Resources */,
 				FBCA06771A94832200722D8B /* Icon-Small@3x.png in Resources */,
+				FBCA067B1A94863600722D8B /* mute.png in Resources */,
 				FBCA06741A94832200722D8B /* Icon-76@2x.png in Resources */,
 				F275B686186E0B06009F6E6B /* Main.storyboard in Resources */,
 				FBCA06761A94832200722D8B /* Icon-Small@2x.png in Resources */,

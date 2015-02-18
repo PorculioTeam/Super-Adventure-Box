@@ -27,6 +27,8 @@
 @synthesize endGameLabel;
 @synthesize hudLives;
 @synthesize hudTimer;
+@synthesize sonido;
+@synthesize hudScore;
 
 // Inicializa el nivel
 -(id)initWithSize:(CGSize)size {
@@ -78,6 +80,22 @@
     hudTimer.name = @"Timer";
     [self addChild:hudTimer];
     
+    // Pone la puntuación en pantalla
+    self.hudScore = [SKLabelNode labelNodeWithFontNamed:@"Marker Felt"];
+    hudScore.text = [NSString stringWithFormat:@"Ptos: %d", self.player.score];
+    hudScore.fontSize = 10;
+    hudScore.position = CGPointMake(self.size.width * 0.0, 20.0);
+    hudScore.horizontalAlignmentMode = 1;
+    hudScore.name = @"Score";
+    self.player.score = 0;
+    [self addChild:hudScore];
+    
+    //Pone el icono de sonido
+    //self.sonido = [SKLabelNode nodeWithFileNamed:@"mute"];
+    //sonido.position = CGPointMake(self.size.width * 0.0, 0.0);
+    //sonido.horizontalAlignmentMode = 1;
+    //[self addChild:sonido];
+    
     // Una vez añadido todo, empieza la partida
     self.startGamePlay = YES;
   }
@@ -89,10 +107,10 @@
 
 - (void)update:(NSTimeInterval)currentTime
 {
-  // HC: Si el juego está detenido, acumula tiempo en un tiempo de pausa para despues restarlo
+  // HC: Si el juego está detenido, el tiempo es pausado y no actualiza nada más.
   // en el marcador
   if (self.gameOver) {
-    self.pauseTime =  currentTime - self.startTime - self.pauseTime;
+    self.pauseTime = currentTime - self.startTime;
     self.startTime = currentTime;
     return;
   }
@@ -118,11 +136,16 @@
   if (self.startGamePlay) {
     self.startTime = currentTime;
     if (self.pauseTime == 0) {
-    self.pauseTime = currentTime - self.startTime;
+      self.pauseTime = currentTime - self.startTime;
     }
     self.startGamePlay = NO;
   }
-  hudTimer.text = [NSString stringWithFormat:@"Tiempo: %i", (int)(currentTime-self.startTime -self.pauseTime)];
+  // HC: El contador, el cual cuenta hacia atrás
+  self.countDown = 100.0 - (int)(currentTime-self.startTime);
+  if (self.countDown <= 0) {
+    [self gameOver:0];
+  }
+  hudTimer.text = [NSString stringWithFormat:@"Tiempo: %i", (int)(self.countDown)];
 }
 
 -(CGRect)tileRectFromTileCoords:(CGPoint)tileCoords {
@@ -293,22 +316,34 @@
 - (void)gameOver:(BOOL)won {
   self.gameOver = YES;
   // Reproduce el sonido
-  [[SKTAudio sharedInstance] pauseBackgroundMusic];
   [self runAction:[SKAction playSoundFileNamed:@"hurt.wav" waitForCompletion:NO]];
   
   // Se asigna el texto dependiendo del booleano Won.
   if (won) {
-    self.gameText = @"¡Has ganado!";
+    // Si ha ganado
+    int timeLeftReward = self.countDown * 10;
+    self.gameText = [NSString stringWithFormat: @"¡Has ganado!, +%d ptos", timeLeftReward];
+    // Si ha ganado, el tiempo que quedó restante se guarda en un int (para evitar que siga contando más hacia abajo
+    self.player.score += timeLeftReward;
     self.levelClear = YES;
   } else {
-    // Si no ha ganado, se le resta una vida y dependiendo del caso muesrta que ha muerto o
-    // game over.
+    // HC: Si no ha ganado, se le resta una vida y dependiendo del caso muesrta que ha muerto o game over.
     self.player.livesLeft = self.player.livesLeft - 1;
-      if (self.player.livesLeft > 0) {
-        self.gameText = [NSString stringWithFormat:@"¡Has muerto!, Vidas restantes: %d", self.player.livesLeft];
-      } else {
-        self.gameText = @"Game Over";
-      }
+    // HC: Hay que indicar si ha muerto por tiempo o no.
+    if (self.countDown <= 0 && self.player.livesLeft > 0) {
+      // HC: Tiempo, le quedan vidas.
+      self.gameText = [NSString stringWithFormat:@"¡Se acabó el tiempo!, Vidas: %d", self.player.livesLeft];
+    }
+    else if (self.player.livesLeft > 0) {
+      // HC: Peligro, le quedan vidas
+      self.gameText = [NSString stringWithFormat:@"¡Has muerto!, Vidas: %d", self.player.livesLeft];
+    } else if (self.countDown <= 0 && self.player.livesLeft == 0) {
+      // HC: Tiempo, no le quedan vidas
+      self.gameText = @"Time and Game Over";
+    } else {
+      // HC: Peligro, no le quedan vidas
+      self.gameText = @"Game Over";
+    }
   }
   
   self.endGameLabel = [SKLabelNode labelNodeWithFontNamed:@"Marker Felt"];
@@ -325,15 +360,14 @@
   replay.frame = CGRectMake(self.size.width / 2.0 - replayImage.size.width / 2.0, self.size.height / 2.0 - replayImage.size.height / 2.0, replayImage.size.width, replayImage.size.height);
   [self.view addSubview:replay];
 }
-
 - (void)replay:(id)sender
 {
   // Tras apretar el botón replay, se quitan el botón y la etiqueta.
   [[self.view viewWithTag:321] removeFromSuperview];
   // Descomentar esta línea en caso de que se quiera que el texto se desvanezca en 1 segundo
   /* [endGameLabel runAction:[SKAction fadeAlphaTo:0.0 duration: 1.0] completion:^{
-    [endGameLabel removeFromParent];
-  }]; */
+   [endGameLabel removeFromParent];
+   }]; */
   // En esta linea el texto desaparece de golpe
   [endGameLabel removeFromParent];
   // Orden de condiciones:
@@ -343,7 +377,12 @@
     // Si el jugador completa el nivel, se supone que cargará el siguiente nivel.
     // TODO: Añadir un nuevo nivel.
     self.gameOver = NO;
+    // HC: Posiciona al jugador al principio de la fase
     self.player.position = CGPointMake(100, 50);
+    // HC: Y también se actualiza la puntuación
+    hudScore.text = [NSString stringWithFormat:@"Score: %d", self.player.score];
+    // HC: Al final hay que indicar que el nivel ya no está completo para evitar problemas
+    self.levelClear = NO;
   } else if (self.player.livesLeft > 0) {
     // Si el jugador tiene vidas, será reposicionado un poco atras.
     self.gameOver = NO;
@@ -356,6 +395,7 @@
     [self.view presentScene:[[GameLevelScene alloc] initWithSize:self.size]];
   }
 }
+
 
 - (void)checkForWin {
   if (self.player.position.x > 3130.0) {

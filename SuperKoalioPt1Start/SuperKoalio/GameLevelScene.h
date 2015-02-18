@@ -28,5 +28,11 @@
 @property (nonatomic, assign) NSTimeInterval startTime;
 // HC: Intervalo que indica la última marca del temporizador
 @property (nonatomic, assign) NSTimeInterval pauseTime;
+//Nodo para mutear el sonido
+@property(nonatomic,strong) SKLabelNode *sonido;
+// HC: Nodo de etiqueta donde aparece la puntuación
+@property (nonatomic, strong) SKLabelNode *hudScore;
+// HC: La cuenta atras del temporizador
+@property (nonatomic, assign) int countDown;
 
 @end
