@@ -39,6 +39,8 @@
 		F275B6E5186E25C1009F6E6B /* SKTTimingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = F275B6DC186E25C1009F6E6B /* SKTTimingFunctions.m */; };
 		F275B6F0186E2749009F6E6B /* tileSet.png in Resources */ = {isa = PBXBuildFile; fileRef = F275B6EE186E2749009F6E6B /* tileSet.png */; };
 		F275B6F1186E2749009F6E6B /* tileSet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F275B6EF186E2749009F6E6B /* tileSet@2x.png */; };
+		FB17B5E91A9A858E004E4470 /* PlayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = FB17B5E81A9A858E004E4470 /* PlayScene.m */; };
+		FB17B5EB1A9A8EF5004E4470 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = FB17B5EA1A9A8EF5004E4470 /* play.png */; };
 		FB22E4941A91F73400B5B98B /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = FB22E4931A91F73400B5B98B /* jump.wav */; };
 		FB31583D1A91ED3A0042A78D /* hurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = FB31583C1A91ED3A0042A78D /* hurt.wav */; };
 		FB31583F1A91EDEB0042A78D /* player.atlas in Resources */ = {isa = PBXBuildFile; fileRef = FB31583E1A91EDEB0042A78D /* player.atlas */; };
@@ -120,6 +122,9 @@
 		F275B6DD186E25C1009F6E6B /* SKTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTUtils.h; sourceTree = "<group>"; };
 		F275B6EE186E2749009F6E6B /* tileSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileSet.png; sourceTree = "<group>"; };
 		F275B6EF186E2749009F6E6B /* tileSet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tileSet@2x.png"; sourceTree = "<group>"; };
+		FB17B5E71A9A858E004E4470 /* PlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayScene.h; sourceTree = "<group>"; };
+		FB17B5E81A9A858E004E4470 /* PlayScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayScene.m; sourceTree = "<group>"; };
+		FB17B5EA1A9A8EF5004E4470 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		FB22E4931A91F73400B5B98B /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
 		FB31583C1A91ED3A0042A78D /* hurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hurt.wav; sourceTree = "<group>"; };
 		FB31583E1A91EDEB0042A78D /* player.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = player.atlas; sourceTree = "<group>"; };
@@ -206,6 +211,8 @@
 				F275B6C9186E2442009F6E6B /* JSTileMap */,
 				F275B6AC186E0B8D009F6E6B /* Player.h */,
 				F275B6AD186E0B8D009F6E6B /* Player.m */,
+				FB17B5E71A9A858E004E4470 /* PlayScene.h */,
+				FB17B5E81A9A858E004E4470 /* PlayScene.m */,
 				F275B68A186E0B06009F6E6B /* GameLevelScene.h */,
 				F275B68B186E0B06009F6E6B /* GameLevelScene.m */,
 				F275B681186E0B06009F6E6B /* AppDelegate.h */,
@@ -272,6 +279,7 @@
 		F275B6C2186E21EB009F6E6B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FB17B5EA1A9A8EF5004E4470 /* play.png */,
 				FBCA06781A94863600722D8B /* kmixdocked_mute.png */,
 				FBCA06791A94863600722D8B /* mute.png */,
 				FB31583E1A91EDEB0042A78D /* player.atlas */,
@@ -423,6 +431,7 @@
 				FBCA06751A94832200722D8B /* Icon-Small.png in Resources */,
 				FBBDD7671A76536400E36B5E /* replay@2x.png in Resources */,
 				FBCA066D1A94832200722D8B /* Contents.json in Resources */,
+				FB17B5EB1A9A8EF5004E4470 /* play.png in Resources */,
 				FBCA067A1A94863600722D8B /* kmixdocked_mute.png in Resources */,
 				FBCA06711A94832200722D8B /* Icon-60@2x.png in Resources */,
 				F275B67D186E0B06009F6E6B /* InfoPlist.strings in Resources */,
@@ -465,6 +474,7 @@
 				F275B6C7186E243E009F6E6B /* LFCGzipUtility.m in Sources */,
 				F275B6AE186E0B8D009F6E6B /* Player.m in Sources */,
 				F275B6E3186E25C1009F6E6B /* SKTAudio.m in Sources */,
+				FB17B5E91A9A858E004E4470 /* PlayScene.m in Sources */,
 				F275B6E4186E25C1009F6E6B /* SKTEffects.m in Sources */,
 				F275B6DE186E25C1009F6E6B /* SKAction+SKTExtras.m in Sources */,
 				F275B6E0186E25C1009F6E6B /* SKEmitterNode+SKTExtras.m in Sources */,

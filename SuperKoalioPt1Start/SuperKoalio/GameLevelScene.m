@@ -11,6 +11,7 @@
 #import "Player.h"
 #import "SKTUtils.h"
 #import "SKTAudio.h"
+#import "PlayScene.h"
 
 @interface GameLevelScene()
 @property (nonatomic, strong) JSTileMap *map;
@@ -19,6 +20,7 @@
 @property (nonatomic, strong) TMXLayer *walls;
 @property (nonatomic, strong) TMXLayer *hazards;
 @property (nonatomic, assign) BOOL gameOver;
+
 
 @end
 
