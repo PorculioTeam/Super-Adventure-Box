@@ -16,16 +16,16 @@
 {
   [super viewDidAppear:animated];
   
-  // Configure the view.
+  // Configure la vista
   SKView * skView = (SKView *)self.view;
   skView.showsFPS = YES;
   skView.showsNodeCount = YES;
   
-  // Create and configure the scene.
+  // Crea y configura la escena.
   SKScene * scene = [PlayScene sceneWithSize:skView.bounds.size];
   scene.scaleMode = SKSceneScaleModeAspectFill;
   
-  // Present the scene.
+  // Presenta la scene.
   [skView presentScene:scene];
 }
 

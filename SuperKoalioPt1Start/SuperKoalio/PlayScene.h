@@ -9,5 +9,6 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface PlayScene : SKScene
-@property(nonatomic,strong) SKSpriteNode *sonido;
+//Nodo del boton play
+@property(nonatomic,strong) SKSpriteNode *play;
 @end

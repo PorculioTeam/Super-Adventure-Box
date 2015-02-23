@@ -11,20 +11,23 @@
 #import "GameLevelScene.h"
 
 @implementation PlayScene
-@synthesize sonido;
+@synthesize play;
 
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {        
-        // Color de fondo (el cielo)
+        // Color de fondo
         self.backgroundColor = [SKColor colorWithRed:.4 green:.4 blue:.95 alpha:1.0];
-        self.sonido = [SKSpriteNode spriteNodeWithImageNamed:@"play.png"];
-        self.sonido.name = @"So";
-        sonido.position = CGPointMake(self.size.width * 0.5,self.size.height * 0.5);
-        [self addChild:sonido];
+        // Asigna el boton play con la imagen, lo posiciona en la escena
+        // y luego lo asigna dentro del mapa como hijo.
+        self.play = [SKSpriteNode spriteNodeWithImageNamed:@"play.png"];
+        self.play.name = @"Jugar";
+        play.position = CGPointMake(self.size.width * 0.5,self.size.height * 0.5);
+        [self addChild:play];
         
         
         
     }
+    //Añade el sonido
     [[SKTAudio sharedInstance] playBackgroundMusic:@"level1.mp3"];
     self.userInteractionEnabled = YES;
     return self;
@@ -35,11 +38,12 @@
             UITouch *touch = [touches anyObject];
             CGPoint location = [touch locationInNode:self];
             SKNode *node = [self nodeAtPoint:location];
-            //if fire button touched, bring the rain
-            if ([node.name isEqualToString:@"So"]) {
-            SKScene *spaceshipScene  = [[GameLevelScene alloc] initWithSize:self.size];
+            
+            //Si el nodo que pulsas es jugar abre la escena GameLevel
+            if ([node.name isEqualToString:@"Jugar"]) {
+            SKScene *gamescene  = [[GameLevelScene alloc] initWithSize:self.size];
             SKTransition *doors = [SKTransition doorsOpenVerticalWithDuration:0.5];
-            [self.view presentScene:spaceshipScene transition:doors];
+            [self.view presentScene:gamescene transition:doors];
     }
 }
 }
