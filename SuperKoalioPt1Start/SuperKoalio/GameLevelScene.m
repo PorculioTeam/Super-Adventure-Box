@@ -356,16 +356,17 @@
       self.gameText = @"Game Over";
     }
   }
-  
+  //Añadimos un nodo que pintara en la pantalla el string almacenado en gameText, y se le asigna un tipo de fuente, un tamaño y su posición.
   self.endGameLabel = [SKLabelNode labelNodeWithFontNamed:@"Marker Felt"];
   endGameLabel.text = self.gameText;
   endGameLabel.fontSize = 40;
   endGameLabel.position = CGPointMake(self.size.width / 2.0, self.size.height / 1.7);
   [self addChild:endGameLabel];
   
+  //Añadimos un boton, le asignamos la posicion y la imagen,y un controlador de touch que cuando se pulsa llama a la funcion replay.
   UIButton *replay = [UIButton buttonWithType:UIButtonTypeCustom];
   replay.tag = 321;
-  UIImage *replayImage = [UIImage imageNamed:@"replay"];
+  UIImage *replayImage = [UIImage imageNamed:@"repl.png"];
   [replay setImage:replayImage forState:UIControlStateNormal];
   [replay addTarget:self action:@selector(replay:) forControlEvents:UIControlEventTouchUpInside];
   replay.frame = CGRectMake(self.size.width / 2.0 - replayImage.size.width / 2.0, self.size.height / 2.0 - replayImage.size.height / 2.0, replayImage.size.width, replayImage.size.height);

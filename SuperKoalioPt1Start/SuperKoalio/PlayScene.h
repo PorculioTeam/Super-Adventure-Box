@@ -11,4 +11,6 @@
 @interface PlayScene : SKScene
 //Nodo del boton play
 @property(nonatomic,strong) SKSpriteNode *play;
+//Nodo para el fondo
+@property(nonatomic,strong) SKSpriteNode *fondo;
 @end
