@@ -22,7 +22,7 @@
 // El número de vidas restantes para el jugador
 @property (nonatomic, assign) int livesLeft;
 //Puntuacion
-@property (nonatomic, assign) int score;
+@property (nonatomic, assign) NSInteger score;
 - (void)update:(NSTimeInterval)delta;
 - (CGRect)collisionBoundingBox;
 //Evento que inicia la animación de caminar en el personaje.

@@ -89,7 +89,7 @@
     
     // Pone la puntuación en pantalla
     self.hudScore = [SKLabelNode labelNodeWithFontNamed:@"Marker Felt"];
-    hudScore.text = [NSString stringWithFormat:@"Ptos: %d", self.player.score];
+    hudScore.text = [NSString stringWithFormat:@"Ptos: %ld", self.player.score];
     hudScore.fontSize = 10;
     hudScore.position = CGPointMake(self.size.width * 0.0, 20.0);
     hudScore.horizontalAlignmentMode = 1;
@@ -391,7 +391,7 @@
     // HC: Posiciona al jugador al principio de la fase
     self.player.position = CGPointMake(100, 50);
     // HC: Y también se actualiza la puntuación
-    hudScore.text = [NSString stringWithFormat:@"Score: %d", self.player.score];
+    hudScore.text = [NSString stringWithFormat:@"Score: %ld", self.player.score];
     // HC: Al final hay que indicar que el nivel ya no está completo para evitar problemas
     self.levelClear = NO;
   } else if (self.player.livesLeft > 0) {
@@ -407,7 +407,7 @@
   }
 }
 
-
+// Si el player llega a la posicion 3130(el final) le pasa al funcion gameOver el parametro 1 (true)
 - (void)checkForWin {
   if (self.player.position.x > 3130.0) {
     [self gameOver:1];

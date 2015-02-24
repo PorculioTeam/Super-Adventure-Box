@@ -17,9 +17,10 @@
   [super viewDidAppear:animated];
   
   // Configure la vista
+  //Desactivamos los fps y el contador de nodos en la pantalla.
   SKView * skView = (SKView *)self.view;
-  skView.showsFPS = YES;
-  skView.showsNodeCount = YES;
+  skView.showsFPS = NO;
+  skView.showsNodeCount = NO;
   
   // Crea y configura la escena.
   SKScene * scene = [PlayScene sceneWithSize:skView.bounds.size];
@@ -31,9 +32,10 @@
 
 - (BOOL)shouldAutorotate
 {
-  return YES;
+  return NO;
 }
 
+//El juego soporta solamente Landscape
 - (NSUInteger)supportedInterfaceOrientations
 {
   return UIInterfaceOrientationMaskLandscape;
