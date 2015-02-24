@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="212" height="20" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="tileSet-hd" tilewidth="16" tileheight="16">
+  <image source="tileSet.png" trans="fe80fe" width="256" height="256"/>
+ </tileset>
+ <layer name="background" width="212" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt19dSFEEUgOE1oKiYQDGhmEWMqChBUcxZQcWIVUbMVQgiKlClYkQvMMcL0BcwPKD/XGjh1jA7sz0z3bt9/qrvjp09vbN0zyYSkiRJkiRJkiSF0XP04AVeWvTekr/kHgXrEz7jC75a9N6Sv+QeSQPrQz++4bvmWdItG9ZgQnLWqvcDP/ELvzXPkm7ZsAYTkrNWsiWbz2Bb1m7q88EQDMUwDEcORmAkcjFK32j/CvrZhXUGm3rPvLLl+cPU54OJyEcBJmEyCjEFUzEtwLWi2ht1fXam3jMp/aI+v+dgLuZhPhZgIRahBIsDXMuWvdErW563MrWov6NlWIXVWINyrMU6VKAygvfM5mRPsbtabMYWbMU2bMcO7MSuQV6Xh7EYF8OM2Vym/EaTc9dfdajHIRzGETTgKI7huMtrZqAIMzELxbFMGk6jMSbx/34wXuM8mfIbTc5df53BWZzDeVzARTThEi4n/X0plmAplmE5VmBlTPOqNj3hvh/M9vHaEziJU2jE6WhGdG2wfWBCgGvonN9JdQ1e88e1tlRraMZNtKAVt9CG22jHnaTrVaEa67EBNdiITT7nGbhmHansB1dwFddwHTcimtEtlX3gbzrnd1Jdg9f8ca0t1Rru4wEeohuP8BhP8BTPkq63G3uwF/uwHwdw0Mcsuu+nk8p+cBf30IFOdEUzomthPBfonN9JdQ1e88e1tlRr6MUrvMYbvMU7vMcHfEy6nsr/k+776ZSp86s+Fzjp/vxV12DC+RTGfZD0p7IPmJLqGkw4n8K+D38A4ca3xw==
+  </data>
+ </layer>
+ <layer name="walls" width="212" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt2G0SgiAQgGFvWjeoG8QJ8Mr5IycGQVk+Bd5nZmcKHWOJdctlAQAAAAAAAAAAAMagW09gcko4DsBPCcdHsraeAJKk9uISvVwJx3vkq5v15FgPSuyH2r8XP7/wvUc/eq+nHo1YL6rw+bVRE26zPZu4yrfkeqjM5yGe9H7dok5iP3PEfuSjAuKuznrSVb9q3c/MPeZ7XdJsfSuU/T/OPjbLfWE0sd9bzTp5bPEUjIdw7eEUkvUw523n4MopJU/U5dpHernX8+HXFm/BuETuugphztvOwZVTjjwRRhOHyLE2rPE/9mfTredBtIldjmukXmeEmKmevnrHE8k=
+  </data>
+ </layer>
+ <layer name="hazards" width="212" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt2VEKgCAMANDu/+WRu0AuV1aa70EfshwrGI7aNgAAAAAAAIDvlGBdDq7avpbc8Hdn/dQaq+XVU6xEP0E/mZlOP0HsifMp6lGYSfZceKqfojX81Z3ve1fmxJWs+twAjCH7X64lTyZWi2dr6XGeXqmzx97o3mi2yuYa1ds1zvBOAKDFDmg1MPE=
+  </data>
+ </layer>
+</map>
