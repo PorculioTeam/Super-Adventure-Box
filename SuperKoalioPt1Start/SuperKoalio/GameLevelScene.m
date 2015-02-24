@@ -65,6 +65,11 @@
       self.player.zPosition = 15;
     }
     
+    //Carga la puntuación desde el NSUserDefaults.
+    //Si no existen todavía datos guardados en el NSUserDefaults(porque no hemos jugado nunca) inicializamos la puntuacion en 0.
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.player.score = [defaults integerForKey:@"PuntuacionAcumulada"];
+    
     // Pone el indicador de vidas en pantalla
     self.hudLives = [SKLabelNode labelNodeWithFontNamed:@"Marker Felt"];
     hudLives.text = [NSString stringWithFormat:@"Vidas: %d", self.player.livesLeft];
@@ -326,6 +331,11 @@
     self.gameText = [NSString stringWithFormat: @"¡Has ganado!, +%d ptos", timeLeftReward];
     // Si ha ganado, el tiempo que quedó restante se guarda en un int (para evitar que siga contando más hacia abajo
     self.player.score += timeLeftReward;
+    //Aquí guardo el score en local en el NSUserDefaults.
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:self.player.score forKey:@"PuntuacionAcumulada"];
+    [defaults synchronize];
+    
     self.levelClear = YES;
   } else {
     // HC: Si no ha ganado, se le resta una vida y dependiendo del caso muesrta que ha muerto o game over.
