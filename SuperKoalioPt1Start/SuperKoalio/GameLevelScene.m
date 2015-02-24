@@ -389,10 +389,25 @@
     // Si el jugador completa el nivel, se supone que cargará el siguiente nivel.
     // TODO: Añadir un nuevo nivel.
     self.gameOver = NO;
+    int vidasAnteriores = self.player.livesLeft;
+    // Asigna el siguiente mapa a la segunda fase
+    [self.map removeFromParent];
+    [self.player removeFromParent];
+    self.player = nil;
+    self.map = nil;
+    self.map = [JSTileMap mapNamed:@"level2.tmx"];
+    [self addChild:self.map];
+    self.walls = [self.map layerNamed:@"walls"];
+    self.hazards = [self.map layerNamed:@"hazards"];
+    self.player = [[Player alloc] initWithImageNamed:@"player"];
     // HC: Posiciona al jugador al principio de la fase
     self.player.position = CGPointMake(100, 50);
+    self.player.zPosition = 15;
+    self.player.livesLeft = vidasAnteriores;
+    [self.map addChild:self.player];
     // HC: Y también se actualiza la puntuación
-    hudScore.text = [NSString stringWithFormat:@"Score: %ld", self.player.score];
+    // NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //self.player.score = [defaults integerForKey:@"PuntuacionAcumulada"];
     // HC: Al final hay que indicar que el nivel ya no está completo para evitar problemas
     self.levelClear = NO;
   } else if (self.player.livesLeft > 0) {
