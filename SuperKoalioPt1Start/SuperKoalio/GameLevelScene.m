@@ -12,6 +12,7 @@
 #import "SKTUtils.h"
 #import "SKTAudio.h"
 #import "PlayScene.h"
+#import "Mob.h"
 
 @interface GameLevelScene()
 @property (nonatomic, strong) JSTileMap *map;
@@ -20,11 +21,12 @@
 @property (nonatomic, strong) TMXLayer *walls;
 @property (nonatomic, strong) TMXLayer *hazards;
 @property (nonatomic, assign) BOOL gameOver;
-
+@property (nonatomic,strong) Mob *mob;
+@property (nonatomic, assign) int misCojonesMorenos;
 
 @end
 
-@implementation GameLevelScene
+@implementation GameLevelScene 
 // Sintetizo los SKLabelNodes
 @synthesize endGameLabel;
 @synthesize hudLives;
@@ -34,10 +36,9 @@
 
 // Inicializa el nivel
 -(id)initWithSize:(CGSize)size {
-  if (self = [super initWithSize:size]) {
+  if (self = [super initWithSize:size]) {   
     // Al inicializar, se indica que el nivel no ha sido completado.
     self.levelClear = NO;
-    
     // Configuramos el nivel y el escenario aquí.
     // Color de fondo (el cielo)
     self.backgroundColor = [SKColor colorWithRed:.4 green:.4 blue:.95 alpha:1.0];
@@ -57,17 +58,27 @@
     {
       self.player = [[Player alloc] initWithImageNamed:@"player"];
       self.player.livesLeft = 3;
-      self.player.position = CGPointMake(100, 50);
+      self.player.position = CGPointMake(100, 49);
       self.player.zPosition = 15;
       [self.map addChild:self.player];
     } else {
-      self.player.position = CGPointMake(100, 50);
+      self.player.position = CGPointMake(100, 49);
       self.player.zPosition = 15;
     }
+    self.mob = [[Mob alloc]initWithImageNamed:@"koalio_stand"];
+    self.mob.position = CGPointMake(490, 44);
+    self.mob.zPosition = 15;
+    [self.map addChild:self.mob];
+    SKAction *potato = [self.mob ronda];
+    [self.mob runAction:potato];
+    
+    
     
     //Carga la puntuación desde el NSUserDefaults.
     //Si no existen todavía datos guardados en el NSUserDefaults(porque no hemos jugado nunca) inicializamos la puntuacion en 0.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //La linea inferior la utilizamos para resetear la puntuación almacenada.
+    //[defaults setObject:(int)0 forKey:@"PuntuacionAcumulada"];
     self.player.score = [defaults integerForKey:@"PuntuacionAcumulada"];
     
     // Pone el indicador de vidas en pantalla
@@ -94,7 +105,6 @@
     hudScore.position = CGPointMake(self.size.width * 0.0, 20.0);
     hudScore.horizontalAlignmentMode = 1;
     hudScore.name = @"Score";
-    self.player.score = 0;
     [self addChild:hudScore];
     
     //Pone el icono de sonido
@@ -110,6 +120,7 @@
   self.userInteractionEnabled = YES;
   return self;
 }
+
 
 - (void)update:(NSTimeInterval)currentTime
 {
@@ -165,13 +176,14 @@
   return [layerInfo tileGidAtCoord:coord];
 }
 
-- (void)checkForAndResolveCollisionsForPlayer:(Player *)player forLayer:(TMXLayer *)layer {
+- (void)checkForAndResolveCollisionsForPlayer:(Player *)player forLayer:(TMXLayer *)layer{
   NSInteger indices[8] = {7, 1, 3, 5, 0, 2, 6, 8};
   player.onGround = NO;
   for (NSUInteger i = 0; i < 8; i++) {
     NSInteger tileIndex = indices[i];
     
     CGRect playerRect = [player collisionBoundingBox];
+    //CGRect mobRect = [mob collisionBoundingBox];
     CGPoint playerCoord = [layer coordForPoint:player.desiredPosition];
     
     if (playerCoord.y >= self.map.mapSize.height -1) {
@@ -190,6 +202,7 @@
       // NSLog(@"GID %ld, Tile Coord %@, Tile Rect %@, player rect %@", (long)gid, NSStringFromCGPoint(tileCoord), NSStringFromCGRect(tileRect), NSStringFromCGRect(playerRect));
       
       // La resolución de colisión va aquí
+
       if (CGRectIntersectsRect(playerRect, tileRect)) {
         CGRect intersection = CGRectIntersection(playerRect, tileRect);
         
@@ -292,8 +305,7 @@
   self.map.position = viewPoint;
 }
 
-- (void)handleHazardCollisions:(Player *)player
-{
+- (void)handleHazardCollisions:(Player *)player{
   if (self.gameOver) return;
   NSInteger indices[8] = {7, 1, 3, 5, 0, 2, 6, 8};
   
@@ -301,7 +313,10 @@
     NSInteger tileIndex = indices[i];
     
     CGRect playerRect = [player collisionBoundingBox];
+    //CGRect mobRect = [mob collisionBoundingBox];
     CGPoint playerCoord = [self.hazards coordForPoint:player.desiredPosition];
+    
+   
     
     NSInteger tileColumn = tileIndex % 3;
     NSInteger tileRow = tileIndex / 3;
@@ -310,7 +325,7 @@
     NSInteger gid = [self tileGIDAtTileCoord:tileCoord forLayer:self.hazards];
     if (gid != 0) {
       CGRect tileRect = [self tileRectFromTileCoords:tileCoord];
-      if (CGRectIntersectsRect(playerRect, tileRect)) {
+      if (CGRectIntersectsRect(playerRect,tileRect)) {
         [self gameOver:0];
       }
     }
@@ -328,13 +343,13 @@
   if (won) {
     // Si ha ganado
     int timeLeftReward = self.countDown * 10;
+    self.misCojonesMorenos = timeLeftReward;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:(self.misCojonesMorenos + [defaults integerForKey:@"PuntuacionAcumulada"]) forKey:@"PuntuacionAcumulada"];
+    [defaults synchronize];
     self.gameText = [NSString stringWithFormat: @"¡Has ganado!, +%d ptos", timeLeftReward];
     // Si ha ganado, el tiempo que quedó restante se guarda en un int (para evitar que siga contando más hacia abajo
-    self.player.score += timeLeftReward;
-    //Aquí guardo el score en local en el NSUserDefaults.
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:self.player.score forKey:@"PuntuacionAcumulada"];
-    [defaults synchronize];
+    self.player.score = [defaults integerForKey:@"PuntuacionAcumulada"];
     
     self.levelClear = YES;
   } else {
@@ -389,6 +404,10 @@
     // Si el jugador completa el nivel, se supone que cargará el siguiente nivel.
     // TODO: Añadir un nuevo nivel.
     self.gameOver = NO;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //int scoretemp = (int)self.player.score + (int)[defaults integerForKey:@"PuntuacionAcumulada"];
+    //[defaults setInteger:scoretemp forKey:@"PuntuacionAcumulada"];
+    //[defaults synchronize];
     int vidasAnteriores = self.player.livesLeft;
     // Asigna el siguiente mapa a la segunda fase
     [self.map removeFromParent];
@@ -406,9 +425,10 @@
     self.player.livesLeft = vidasAnteriores;
     [self.map addChild:self.player];
     // HC: Y también se actualiza la puntuación
-    // NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //self.player.score = [defaults integerForKey:@"PuntuacionAcumulada"];
-    // HC: Al final hay que indicar que el nivel ya no está completo para evitar problemas
+    //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.player.score = [defaults integerForKey:@"PuntuacionAcumulada"];
+    hudScore.text = [NSString stringWithFormat:@"Ptos: %ld", self.player.score];
+    //HC: Al final hay que indicar que el nivel ya no está completo para evitar problemas
     self.levelClear = NO;
   } else if (self.player.livesLeft > 0) {
     // Si el jugador tiene vidas, será reposicionado un poco atras.

@@ -109,7 +109,7 @@
 		// Calculate the amount of remaining free space in the output buffer
 		// by subtracting the number of bytes that have been written so far
 		// from the buffer's total capacity
-		zlibStreamStruct.avail_out = [compressedData length] - zlibStreamStruct.total_out;
+        zlibStreamStruct.avail_out =(uInt)[compressedData length] - (uInt)zlibStreamStruct.total_out;
 		
 		/* deflate() compresses as much data as possible, and stops/returns when
 		 the input buffer becomes empty or the output buffer becomes full. If

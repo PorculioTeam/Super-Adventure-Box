@@ -64,14 +64,12 @@ NSMutableArray *_walkAnimation;
 }
 
 - (void)walkingPlayer {
-    //This is our general runAction method to make our bear walk.
     [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:_walkAnimation timePerFrame:0.1f resize:NO restore:YES]] withKey:@"walkingPlayerAction"];
     return;
 }
 
 - (void)walkStop {
     [self removeActionForKey:@"walkingPlayerAction"];
-    //[self removeActionForKey:@"playerWalkMovement"];
 }
 
 @end

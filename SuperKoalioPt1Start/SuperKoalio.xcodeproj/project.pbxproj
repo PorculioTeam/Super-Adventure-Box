@@ -43,6 +43,8 @@
 		FB22E4941A91F73400B5B98B /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = FB22E4931A91F73400B5B98B /* jump.wav */; };
 		FB31583D1A91ED3A0042A78D /* hurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = FB31583C1A91ED3A0042A78D /* hurt.wav */; };
 		FB31583F1A91EDEB0042A78D /* player.atlas in Resources */ = {isa = PBXBuildFile; fileRef = FB31583E1A91EDEB0042A78D /* player.atlas */; };
+		FB7D29CA1A9DADB000027167 /* level2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = FB7D29C91A9DADB000027167 /* level2.tmx */; };
+		FB7D29CD1A9DB89A00027167 /* Mob.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7D29CC1A9DB89A00027167 /* Mob.m */; };
 		FB874F621A947610006EF371 /* level1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB874F611A947610006EF371 /* level1.mp3 */; };
 		FBCA066D1A94832200722D8B /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = FBCA06621A94832200722D8B /* Contents.json */; };
 		FBCA066E1A94832200722D8B /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = FBCA06631A94832200722D8B /* Icon-40.png */; };
@@ -128,6 +130,9 @@
 		FB22E4931A91F73400B5B98B /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
 		FB31583C1A91ED3A0042A78D /* hurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hurt.wav; sourceTree = "<group>"; };
 		FB31583E1A91EDEB0042A78D /* player.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = player.atlas; sourceTree = "<group>"; };
+		FB7D29C91A9DADB000027167 /* level2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = level2.tmx; sourceTree = "<group>"; };
+		FB7D29CB1A9DB89A00027167 /* Mob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mob.h; sourceTree = "<group>"; };
+		FB7D29CC1A9DB89A00027167 /* Mob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mob.m; sourceTree = "<group>"; };
 		FB874F611A947610006EF371 /* level1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = level1.mp3; sourceTree = "<group>"; };
 		FBCA06621A94832200722D8B /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		FBCA06631A94832200722D8B /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
@@ -214,6 +219,8 @@
 				F275B6AC186E0B8D009F6E6B /* Player.h */,
 				F275B6AD186E0B8D009F6E6B /* Player.m */,
 				FB17B5E71A9A858E004E4470 /* PlayScene.h */,
+				FB7D29CB1A9DB89A00027167 /* Mob.h */,
+				FB7D29CC1A9DB89A00027167 /* Mob.m */,
 				FB17B5E81A9A858E004E4470 /* PlayScene.m */,
 				F275B68A186E0B06009F6E6B /* GameLevelScene.h */,
 				F275B68B186E0B06009F6E6B /* GameLevelScene.m */,
@@ -271,6 +278,7 @@
 		F275B6C1186E21D9009F6E6B /* TMX Files */ = {
 			isa = PBXGroup;
 			children = (
+				FB7D29C91A9DADB000027167 /* level2.tmx */,
 				F275B6EE186E2749009F6E6B /* tileSet.png */,
 				F275B6EF186E2749009F6E6B /* tileSet@2x.png */,
 				F275B6BB186E21CB009F6E6B /* level1.tmx */,
@@ -446,6 +454,7 @@
 				FB31583D1A91ED3A0042A78D /* hurt.wav in Resources */,
 				FBFA6A3E1A9CFD8E006330E3 /* fondo.png in Resources */,
 				FBCA06771A94832200722D8B /* Icon-Small@3x.png in Resources */,
+				FB7D29CA1A9DADB000027167 /* level2.tmx in Resources */,
 				FBCA067B1A94863600722D8B /* mute.png in Resources */,
 				FBCA06741A94832200722D8B /* Icon-76@2x.png in Resources */,
 				F275B686186E0B06009F6E6B /* Main.storyboard in Resources */,
@@ -478,6 +487,7 @@
 				F275B6C7186E243E009F6E6B /* LFCGzipUtility.m in Sources */,
 				F275B6AE186E0B8D009F6E6B /* Player.m in Sources */,
 				F275B6E3186E25C1009F6E6B /* SKTAudio.m in Sources */,
+				FB7D29CD1A9DB89A00027167 /* Mob.m in Sources */,
 				FB17B5E91A9A858E004E4470 /* PlayScene.m in Sources */,
 				F275B6E4186E25C1009F6E6B /* SKTEffects.m in Sources */,
 				F275B6DE186E25C1009F6E6B /* SKAction+SKTExtras.m in Sources */,
